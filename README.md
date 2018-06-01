@@ -1,2 +1,2 @@
-# sim-ii
-Simulator Instructor Interface
+# sim-player
+Simulator Debrief Viewer
