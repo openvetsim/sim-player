@@ -1,2 +1,2 @@
-# sim-player
-Record and Playback system for Simulator.
+# sim-ii
+Simulator Instructor Interface

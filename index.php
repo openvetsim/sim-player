@@ -1,170 +1,61 @@
 <?php
-	ini_set('display_errors', 'On');
-	error_reporting(E_ALL | E_STRICT);
+	require_once('init.php');
+	
+	// delete session data
+	adminClass::removeUserfromSession();
+
+	// check admin login
+	$loginErrorFlag = 0;
+	if(isset($_POST['submit'])) {
+//FB::log($_POST);
+
+		if(($userRow = adminClass::isUserLoginValid($_POST['UserEmail'], $_POST['UserPassWord'])) !== FALSE) {
+			adminClass::addUserToSession($userRow);
+			header('location: player.php');
+		} else {
+			adminClass::removeUserFromSession();
+			$loginErrorFlag = 1;
+		}
+	}
+	
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Player</title>
-		<script
-			  src="http://code.jquery.com/jquery-3.3.1.min.js"
-			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
-		<script src="js/vwin.js"></script>
-<script>
-var vWin = new vWindow();
-
-<?php
-	$flist = array();
-	$newest = 0;
-	$newestDay = "";
-	$newestTime = "";
-	$date = "";
-	if ( $handle = opendir('.'))
-	{
-		while ( false !== ($file = readdir($handle)))
-		{
-			if ( $file != "." && $file != "..")
-			{
-				$parts = explode("_", $file );
-				//printf("// %s    %d\n", $file, count($parts) );
+		<?php require_once(SERVER_INCLUDES . "header.php"); ?>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var loginErrorFlag = <?php echo $loginErrorFlag; ?>;
+				if(loginErrorFlag == 1) {
+					$('p.error_login').toggle();
+				}
 				
-				if ( count($parts) == 3 ) 
-				{
-					$time = strtotime($parts[0].' '.$parts[1]);
-					if ( $time > $newest )
-					{
-						$newest = $time;
-						$newestDay = $parts[0];
-						$newestTime = $parts[1];
-					}
-				} 
-			}
-		}
-		closedir($handle);
-		
-		printf("var date=\"%s_%s\";\n", $newestDay, $newestTime  );
-		$date = sprintf("%s_%s", $newestDay, $newestTime  );
-		
-		// Create the file list
-		$handle = opendir('.');
-		while ( false !== ($file = readdir($handle)))
-		{
-			if ( $file != "." && $file != "..")
-			{
-				if ( strncmp($date, $file, strlen($date) ) == 0 )
-				{
-					$flist[] = $file;
-					printf("// %s    %d\n", $file, count($parts) );
-				}
-			}
-		}
-		closedir($handle);
-	}
-	else
-	{
-		printf("var date=\"\";\n" );
-	}
-	printf(" var files = {\n" );
-	$acount = 0;
-	$vcount = 0;
-	foreach ( $flist as $file )
-	{
-		$parts = explode(".", $file );
-		if ( count($parts) == 2 )
-		{
-			$ext = $parts[1];
-			$parts = explode("_", $parts[0] );
-			$id = $parts[2];
-			if ( $ext == 'mp4' )
-			{
-				if ( $id == 'scr' )
-				{
-					printf("  'screen':'%s',\n", $file );
-				}
-				else if ( $id[0] == 'v' )
-				{
-					$vcount++;
-					printf("  'v_%d' : '%s',\n", $vcount, $file );
-				}
-			}
-			else if ( $ext == 'mp3' )
-			{
-				if ( $id[0] == 'a' )
-				{
-					$acount++;
-					printf("  'a_%d' : '%s',\n", $acount, $file );
-				}
-			}
-		}
-	}
-	printf(" 'end': '0' };\n" );
-?>
-
-	$(document).ready(function() 
-	{
-		console.log(date );
-		$.each(files, function(key, filename ) {
-			if ( key == 'screen' )
-			{
-				console.log("Video", key, filename );
-				vWin.openWindow(640,480,filename);
-			}
-			if ( key.charAt(0) == 'v' )
-			{
-				console.log("Video", key, filename );
-				vWin.openWindow(640,480,filename);
-			}
-			else if ( key.charAt(0) == 'a' )
-			{
-				console.log("Audio", key, filename );
-				
-				$('#audioBlocks').append(
-'<audio id="audio-'+key+'" class="audioPlayer" width=100% height="auto" controls >'+
-'<source src="'+filename+'" type="audio/mp3" controls >'+
-'</audio><br>'
-);
-				var num = key.substr(2 );
-				$('#audioBlocks').append("<button class='muteAudio' id='muteAudio-"+num+"'>Toggle Mute Audio "+num+"</button><br>");
-			}
-		});
-
-		setTimeout(function(){
-			vWin.connectVideo(0 );
-		}, 1000 );
-		
-		$('#startPlay').click(function() {
-			console.log("Start" );
-			vWin.playAll();
-		});
-		$('#jumpContent').click(function() {
-			vWin.pauseAll();
-			vWin.seekAll(10);
-			vWin.playAll();
-		});
-		
-		$('.muteAudio').click(function() {
-			var obj = $(this);
-			var idParts = $(obj).attr('id' ).split('-');
-			var which = idParts[1];
-			vWin.mute_toggle(which);
-		});
-		$('#pauseVideo').click(function() {
-			vWin.pauseAll();
-		});
-	});
+				// focus on username
+				$('input[name=UserEmail]').focus();
+			});
 		</script>
 	</head>
-
 	<body>
-		<p>The content of the document......</p>
-		
-		<button id="startPlay">Start</button>
-		<button id="pauseVideo">Pause</button>
-		<button id="jumpContent">Jump</button><br>
-		<br>
-
-		<div id='audioBlocks'></div>
+		<div id="sitewrapper">
+			<div id="admin_header">
+				<img src="<?php echo BROWSER_IMAGES; ?>logo-open-vetsim.gif" alt="logo" style="height: 90px;">
+				<h1>Please login to Open VetSim.</h1>
+			</div>
+			<div class="clearer" id="admin_login">
+				<form method="post" action="#" autocomplete="off">
+					<fieldset>
+						<label>Username:</label>
+						<input type="text" name="UserEmail" />
+						<label>Password:</label>
+						<input type="password" name="UserPassWord" />
+					</fieldset>
+					<button id="login_submit" name="submit" class="admin-btn red-button">Submit</button>
+					<p class="error_login">Incorrect username or password.  Please try again.</p>
+				</form>
+			</div>
+			
+			<div class="clearer"></div>
+		</div>	
 	</body>
-</html> 
-	
+</html>
