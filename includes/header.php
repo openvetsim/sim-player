@@ -1,5 +1,5 @@
 		<meta charset="UTF-8">
-		<title>Vet School Simulation Playback</title>
+		<title>Open VetSim Debrief Viewer</title>
 		<link rel="shortcut icon" href="favicon.ico" />		
 
 <?php
