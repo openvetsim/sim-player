@@ -1,2 +1,2 @@
 # sim-player
-Simulator Debrief Viewer
+Open VetSim Debrief Viewer
