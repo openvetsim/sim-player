@@ -74,7 +74,7 @@
 	/* log table */
 	
 	.log-table{
-		width: 850px;
+		width: 617px;
 		
 	}
 	
@@ -96,6 +96,15 @@
 	}
 	.log-table td.col-300{
 		width: 300px;
+	}
+	.log-table td.col-scenario{
+		width: 198px;
+	}
+	.log-table td.col-date{
+		width: 198px;
+	}
+	.log-table td.col-vid{
+		width: 198px;
 	}
 	.log-table td.user-header {
 		font-weight: bold;

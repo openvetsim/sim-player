@@ -14,7 +14,7 @@
 	$currentLogFile = dbClass::valuesFromPost('fn');
 	
 	// get list of log files
-	$fileNameArray = scandir(SERVER_SIM_LOGS);
+	$fileNameArray = scandir(SERVER_SIM_LOGS, SCANDIR_SORT_DESCENDING);
 
 	// parse file list
 	$fileList = array();
@@ -46,9 +46,9 @@
 		
 		<table id="log-table-title" class="log-table">
 			<tr>
-				<td class="user-header col-200">Scenario Name</td>
-				<td class="user-header col-200">Date</td>
-				<td class="user-header col-300">Video File Found?</td>
+				<td class="user-header col-scenario">Scenario Name</td>
+				<td class="user-header col-date">Date</td>
+				<td class="user-header col-vid">Video File Found?</td>
 			</tr>
 		</table>
 		
@@ -75,9 +75,9 @@
 		
 		$content .= '
 			<tr data-filename="' . $fileInfo['orig'] . '" ' . $selectContent . '>
-				<td class="col-200 log-name">' . $fileInfo['name'] . '</td>
-				<td class="col-200">' . $fileInfo['date'] . '</td>
-				<td class="col-300 log-video">' . $videoFileName . '</td>
+				<td class="col-scenario log-name">' . $fileInfo['name'] . '</td>
+				<td class="col-date">' . $fileInfo['date'] . '</td>
+				<td class="col-vid log-video">' . $videoFileName . '</td>
 			</tr>
 		';
 	}

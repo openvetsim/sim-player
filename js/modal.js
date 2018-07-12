@@ -46,9 +46,10 @@
 					if(response.status == AJAX_STATUS_OK) {
 						modal.showModal(response);
 						$('#modal .container').css({
-													width: '900px',
+													width: '625px',
 													height: '480px',
-													top: '100px'
+													top: '120px',
+													margin: '0 0 0 25px'
 													});
 						$('#modal .container .control-modal-div').css({
 							width:'900px'
@@ -64,11 +65,13 @@
 							top: '-2px',
 							right: '-2px'
 						});
+						
+						$('table.log-table').css('width', '600px');
+						
 						modal.bindCloseModal();
 						
-						// scroll to row position
-						var row = $('#log-table-content').find('tr').eq(response.currentFilePos);
-						$('#log-table-content').scrollTop(row.position().top - 80);
+						// scroll to top row position
+						$('#log-table-content').scrollTop(0);
 						
 						$('#log-table-content table tr').click(function(evt) {
 							evt.preventDefault();

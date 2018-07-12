@@ -15,7 +15,7 @@
 				vid.winObj = window.open(
 									BROWSER_ROOT_FULL + "sim-player/video.php?url=" + vid.url,
 									"Video Player", 
-									"location=0,status=0,scrollbars=0,width=640,height=480"
+									"location=0,status=0,scrollbars=0,width=640,height=480,left=700"
 								);
 			} else {
 				clearInterval(vid.timer);

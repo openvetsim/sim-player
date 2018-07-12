@@ -19,6 +19,24 @@
 			$(document).ready(function() {
 				// init menu
 				menu.init();
+				
+				// show log files
+				modal.showLogFiles();
+				
+				$('#admin-nav').css({
+					'width': '700px',
+					'margin-bottom': '20px'
+				});
+				$('.profile-display.scenario').css('width', '340px');
+				
+				$('#sitewrapper').css('margin', '0');
+				var wWidth = $('body').width();
+					$('#event-log').width(wWidth - 75);
+				$( window ).resize(function() {
+					var wWidth = $('body').width();
+					$('#event-log').width(wWidth - 75);
+				});
+				
 			});
 		</script>
 	</head>
@@ -28,7 +46,7 @@
 				<h1>Open VetSim Debrief Viewer</h1>
 				<h1 class="welcome-title">Welcome <?= $userName; ?></h1>
 				<div class="profile-display scenario">
-					Log File Name:
+					<!-- Log File Name: -->
 					<span id="scenario-name-display"></span>
 				</div>
 				<ul id="main-nav">
@@ -54,6 +72,10 @@
 					<li>
 						<a href="javascript:void(2);" onclick="modal.showLogFiles();">Log Files</a>
 					</li>
+					<li class="debrief">
+						<a href="/sim-ii/ii.php" class="event-link">Instructor Interface</a>						
+					</li>
+
 					<li class="logout">
 						Version: <?= VERSION_MAJOR . '.' . VERSION_MINOR; ?>						
 					</li>
