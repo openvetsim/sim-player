@@ -30,7 +30,9 @@
 
 	$content = '<table>
 					<tr>
-						<td class="event-header align-center">Event Time</td>
+						<td class="event-header time align-center">Elapsed Time</td>
+						<td class="event-header time align-center">Scenario Time</td>
+						<td class="event-header time align-center">Scene Time</td>
 						<td class="event-header align-center">Event Description</td>
 					</tr>
 	';
@@ -38,12 +40,14 @@
 	$timeStampBase = strtotime("1/1/2000 0:0:0");
 	
 	foreach($logArray as $logRecord) {
-		list($timeStamp, $event) = explode(" ", $logRecord, 2);
+		list($timeStamp, $scenarioTime, $sceneTime, $event) = explode(" ", $logRecord, 4);
 		$eventTimeStamp = strtotime('1/1/2000 ' . $timeStamp) - $timeStampBase;
 
 		$content .= '
 			<tr class="event-content-row" data-ts="' . $eventTimeStamp . '">
 				<td class="time-stamp event-content align-center">' . $timeStamp . '</td>
+				<td class="time-stamp event-content align-center">' . $scenarioTime . '</td>
+				<td class="time-stamp event-content align-center">' . $sceneTime . '</td>
 				<td class="event event-content">' . $event . '</td>
 			</tr>
 		';

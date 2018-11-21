@@ -87,8 +87,9 @@
 			
 			<div id="event-log"></div>
 			<div id="current-time" style="clear: both; float: left;"></div>
-						
+	
 			<div class="clearer"></div>
+			<a id="play-test" href="javascript: void(2)"><img src="./images/play.png" width="40"></a>
 		</div> <!-- sitewrapper -->
 		
 		<!-- Modal -->

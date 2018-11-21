@@ -225,6 +225,9 @@ a:hover {
 			#event-log td.event-header {
 				font-weight: bold
 			}
+				#event-log td.event-header.time {
+					width: 85px;
+				}
 		
 	.align-center {
 		text-align: center;
@@ -270,6 +273,11 @@ a:hover {
 	font-family:Arial;
 	letter-spacing: 1px;
 	cursor: pointer;
+}
+
+#play-test {
+	margin: 10px 0 0 40px;
+	display: block;
 }
 
 

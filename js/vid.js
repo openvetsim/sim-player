@@ -63,6 +63,8 @@
 					if(!vid.vidObj.paused) {
 						vid.currentStatus = vid.status.PLAYING;
 					}
+					
+					vid.vidObj.controls = true;
 				} else if(vid.currentStatus == vid.status.PLAYING) {
 					currentTime = Math.ceil(vid.vidObj.currentTime);
 					$('#current-time').html("Current video at " + currentTime + " sec.");
@@ -73,10 +75,31 @@
 						return $(this).data('ts') <= currentTime;
 					}).last().addClass("selected");
 					
-					// have we ended?
+					// have we ended or paused
 					if(vid.vidObj.ended) {
 						vid.currentStatus = vid.status.ENDED;
+					} else if(vid.vidObj.paused) {
+						vid.currentStatus = vid.status.PAUSED;
 					}
+					
+					// have we detected a pause?
+					// get currently selected row
+					var currentEventRowObj = $("#event-log table tr.selected");
+					if(currentEventRowObj.children('td.event').html().search('Pause') != -1) {
+						var nextEventRowObj = currentEventRowObj.next();
+						while(typeof nextEventRowObj != 'undefined') {
+							if(nextEventRowObj.children('td.event').html().search('Resume') != -1) {
+								vid.vidObj.currentTime = nextEventRowObj.data('ts');
+								break;
+							} else {
+								nextEventRowObj = currentEventRowObj.next();
+							}
+						}
+					}
+					
+
+					
+					
 				} else if(vid.currentStatus == vid.status.ENDED) {
 					$('#event-log table tr').removeClass("selected");
 					$("#event-log table tr").last().addClass("selected");
@@ -85,13 +108,42 @@
 					if(!vid.vidObj.ended) {
 						vid.currentStatus = vid.status.READY;
 					}
-					
+				} else if(vid.currentStatus == vid.status.PAUSED) {
+					// has video started?
+					if(!vid.vidObj.paused) {
+						vid.currentStatus = vid.status.PLAYING;
+					}
 				}
+				
+				vid.setPlayerControl();
 			}, 1000);
 			
 			// close window if page is closed or refreshed
 			$(window).on('beforeunload', function(){
 				vid.winObj.close();
 			});
+			
+			// bind player play button
+			$('#play-test').click(function() {
+				if(vid.currentStatus == vid.status.PLAYING) {
+					vid.vidObj.pause();
+				} else {
+					vid.vidObj.play();				
+				}
+			});
+		},
+		
+		setPlayerControl: function() {
+			if(vid.vidObj == null) {
+				return;
+			}
+			
+//			vid.vidObj.controls = true;
+			$(vid.vidObj).attr('controls', true);
+			if(vid.currentStatus == vid.status.PLAYING) {
+				$('#play-test img').attr('src', './images/stop.png');
+			} else {
+				$('#play-test img').attr('src', './images/play.png');			
+			}
 		}
 	}
