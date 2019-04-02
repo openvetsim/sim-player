@@ -93,7 +93,31 @@
 							
 							$('#log-table-content table tr').removeClass('selected');
 							$(this).addClass('selected');
+							
+							// add color classes
+							$('td.event-content').parent().addClass('event-class');
+							$('td.event-content:contains("VS:")').parent().removeClass('event-class').addClass('status-class');
+							$('td.event-content:contains("Comment:")').parent().removeClass('event-class').addClass('comment-class');
 							modal.closeModal();
+							
+							// bind checkboxes
+							$('#hide-comment').change(function() {
+								if( $(this).is(':checked') ) {
+									$('tr.comment-class').hide();
+								} else {
+									$('tr.comment-class').show();
+								}
+							});
+							
+							$('#hide-status').change(function() {
+								if( $(this).is(':checked') ) {
+									$('tr.status-class').hide();
+								} else {
+									$('tr.status-class').show();
+								}
+							});
+							
+							
 						});
 					}
 				}
