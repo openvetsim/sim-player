@@ -24,7 +24,7 @@
 				modal.showLogFiles();
 				
 				$('#admin-nav').css({
-					'width': '700px',
+					'width': '800px',
 					'margin-bottom': '20px'
 				});
 				$('.profile-display.scenario').css('width', '340px');
