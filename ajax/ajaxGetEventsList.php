@@ -28,7 +28,17 @@
 		exit();	
 	}
 
-	$content = '<table>
+	// add in checkboxes
+	$content = '
+		<div id="log-filter">
+			<p id="legend-status" class="status-class legend"></p><p>Hide Status</p><input type="checkbox" name="hide-status" id="hide-status">
+			<p id="legend-comment" class="comment-class legend"></p><p>Hide Comments</p><input type="checkbox" name="hide-comment" id="hide-comment">
+		</div>
+		<div class="clearer"></div>
+	';
+	
+	
+	$content .= '<table>
 					<tr>
 						<td class="event-header time align-center">Elapsed Time</td>
 						<td class="event-header time align-center">Scenario Time</td>
