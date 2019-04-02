@@ -280,6 +280,37 @@ a:hover {
 	display: block;
 }
 
+tr.status-class, p.status-class {
+	background-color: #FFE6E6;
+}
+
+tr.event-class {
+	background-color: #E6E6FF;
+}
+
+tr.comment-class, p.comment-class {
+	background-color: #FF9999;
+}
+
+#log-filter p, #log-filter input{
+	float: left;
+}
+
+#log-filter {
+	margin-bottom: 40px;
+}
+
+#log-filter .legend {
+	height: 20px;
+	width: 20px;
+	border: 1px solid black;
+	margin-right: 10px;
+}
+
+#log-filter input {
+	margin: 3px 40px 0 5px;
+}
+
 
 
 		
