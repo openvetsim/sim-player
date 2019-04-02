@@ -50,7 +50,7 @@
 				
 					// clear out formatting for events
 					$('#event-log table tr').removeClass("selected");
-					$("#event-log table tr").filter(function() {
+					$("#event-log table tr:visible").filter(function() {
 						return $(this).data('ts') <= currentTime;
 					}).last().addClass("selected");
 					
@@ -71,7 +71,7 @@
 				
 					// clear out formatting for events
 					$('#event-log table tr').removeClass("selected");
-					$("#event-log table tr").filter(function() {
+					$("#event-log table tr:visible").filter(function() {
 						return $(this).data('ts') <= currentTime;
 					}).last().addClass("selected");
 					
