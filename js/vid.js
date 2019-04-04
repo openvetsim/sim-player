@@ -1,3 +1,8 @@
+/*
+sim-ii: Copyright (C) 2019  VetSim, Cornell University College of Veterinary Medicine Ithaca, NY
+
+See gpl.html
+*/
 	var vid = {
 		status: Object.freeze({
 			"INIT": 1, "READY": 2, "PLAYING": 3, "PAUSED": 4, "ENDED": 5, "INVALID": 6
