@@ -286,35 +286,53 @@ a:hover {
 	display: block;
 }
 
-tr.status-class, p.status-class {
-	background-color: #FFE6E6;
+#player-event-list {
+	width: 800px;
 }
 
-tr.event-class {
+tr.settings-class, p.settings-class {
+	background-color: #FFFFCC;
+}
+
+tr.simulator-class, p.simulator-class {
 	background-color: #E6E6FF;
 }
 
 tr.comment-class, p.comment-class {
-	background-color: #FF9999;
+	background-color: #CCFFCC;
 }
 
-#log-filter p, #log-filter input{
+tr.et-class, p.et-class {
+	background-color: #FFCCD5;
+}
+
+tr.cpr-class, p.cpr-class {
+	background-color: #ffdb99;
+}
+
+.log-filter p, .log-filter input{
 	float: left;
 }
 
-#log-filter {
+.log-filter {
 	margin-bottom: 40px;
 }
 
-#log-filter .legend {
+.log-filter .legend {
 	height: 20px;
 	width: 20px;
 	border: 1px solid black;
 	margin-right: 10px;
+	padding: 2px;
+	font-size: 24px;
+}
+.log-filter .legend:hover {
+	cursor: pointer;
 }
 
-#log-filter input {
-	margin: 3px 40px 0 5px;
+.log-filter p.legend-label {
+	margin: 3px 40px 0 0px;
+	font-size: 18px;
 }
 
 
