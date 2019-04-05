@@ -61,7 +61,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 	<body>
 		<div id="sitewrapper">
 			<div id="admin-nav">
-				<h1>Open VetSim Debrief Viewer</h1>
+				<h1>Open VetSim Debrief Viewer - V<?= VERSION_MAJOR . '.' . VERSION_MINOR; ?></h1>
 				<h1 class="welcome-title">Welcome <?= $userName; ?></h1>
 				<div class="profile-display scenario">
 					<!-- Log File Name: -->
@@ -94,9 +94,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 						<a href="/sim-ii/ii.php" class="event-link">Instructor Interface</a>						
 					</li>
 
-					<li class="logout">
-						Version: <?= VERSION_MAJOR . '.' . VERSION_MINOR; ?>						
-					</li>
 					<li class="logout">
 						<a href="index.php" class="event-link">Logout</a>						
 					</li>
