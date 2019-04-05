@@ -48,15 +48,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 	// add in checkboxes
 	$content = '
-		<div id="log-filter">
-			<p id="legend-status" class="status-class legend"></p><p>Hide Status</p><input type="checkbox" name="hide-status" id="hide-status">
-			<p id="legend-comment" class="comment-class legend"></p><p>Hide Comments</p><input type="checkbox" name="hide-comment" id="hide-comment">
+		<div class="log-filter">
+			<p id="settings-status" class="settings-class legend"></p><p class="legend-label">Hide II Settings</p>
+			<p id="simulator-status" class="simulator-class legend"></p><p class="legend-label">Hide Simulator</p>
+			<p id="et-status" class="et-class legend"></p><p class="legend-label">Hide Events & Triggers</p>
 		</div>
 		<div class="clearer"></div>
 	';
 	
 	
-	$content .= '<table>
+	$content .= '<table id="player-event-list">
 					<tr>
 						<td class="event-header time align-center">Elapsed Time</td>
 						<td class="event-header time align-center">Scenario Time</td>
