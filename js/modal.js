@@ -100,28 +100,44 @@ See gpl.html
 							$(this).addClass('selected');
 							
 							// add color classes
-							$('td.event-content').parent().addClass('event-class');
-							$('td.event-content:contains("VS:")').parent().removeClass('event-class').addClass('status-class');
-							$('td.event-content:contains("Comment:")').parent().removeClass('event-class').addClass('comment-class');
+							$('td.event-content:contains("Setting:")').parent().addClass('settings-class');
+							$('td.event-content:contains("VS:"), td.event-content:contains("Action:")').parent().addClass('simulator-class');
+							$('td.event-content:contains("Comment:")').parent().addClass('comment-class');
+							$('td.event-content:contains("Probe:"), td.event-content:contains("Event:"), td.event-content:contains("Trigger:")').parent().addClass('et-class');
+							$('td.event-content:contains("CPR:")').parent().addClass('cpr-class');
+							
 							modal.closeModal();
 							
 							// bind checkboxes
-							$('#hide-comment').change(function() {
-								if( $(this).is(':checked') ) {
-									$('tr.comment-class').hide();
+							$('#settings-status').click(function() {
+								if( $(this).hasClass('checked') == false ) {
+									$('tr.settings-class').fadeOut();
+									$(this).addClass('checked').html('&#10004;');
 								} else {
-									$('tr.comment-class').show();
+									$('tr.settings-class').fadeIn();
+									$(this).removeClass('checked').html('');
 								}
 							});
 							
-							$('#hide-status').change(function() {
-								if( $(this).is(':checked') ) {
-									$('tr.status-class').hide();
+							$('#simulator-status').click(function() {
+								if( $(this).hasClass('checked') == false ) {
+									$('tr.simulator-class').fadeOut();
+									$(this).addClass('checked').html('&#10004;');
 								} else {
-									$('tr.status-class').show();
+									$('tr.simulator-class').fadeIn();
+									$(this).removeClass('checked').html('');
 								}
 							});
 							
+							$('#et-status').click(function() {
+								if( $(this).hasClass('checked') == false ) {
+									$('tr.et-class').fadeOut();
+									$(this).addClass('checked').html('&#10004;');
+								} else {
+									$('tr.et-class').fadeIn();
+									$(this).removeClass('checked').html('');
+								}
+							});
 							
 						});
 					}
