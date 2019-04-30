@@ -18,6 +18,20 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 
+// Note: 
+// Don't change the database username and password in this file, as 
+// they will be overwritten if you download updates. You should set
+// the username abd password in a a file named dbDefaults.php in this directory.
+$defaultsFile = SERVER_CLASSES . "dbDefaults.php";
+if ( file_exists($defaultsFile ) )
+{
+	include($defaultsFile );
+}
+else
+{
+	define("DB_USER", "phpmyadmin" );
+	define("DB_PASS", "vet\$im" );
+}
 
 	class dbClass {		
 		private static $connection;
@@ -27,8 +41,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 		private static $dbParams = array(
 							'vet' => array(
 											'dbHost' => 'localhost',
-											'dbUser' => 'phpmyadmin',
-											'dbPswd' => 'vet$im',
+											'dbUser' => DB_USER,
+											'dbPswd' => DB_PASS,
 											'dbName' => 'vet'
 										),
 							'' => array(
