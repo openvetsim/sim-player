@@ -231,11 +231,11 @@ else
 			$tempString = "";
 
 			if(isset($_POST[$varName])){
-				if (get_magic_quotes_gpc() == false) {
+//				if (get_magic_quotes_gpc() == false) {
 					$tempString = mysqli_real_escape_string($connection, $_POST[$varName]);
-				} else {
-					$tempString = $_POST[$varName];
-				}
+//				} else {
+//					$tempString = $_POST[$varName];
+//				}
 			} else {
 				$tempString = "";
 			}
