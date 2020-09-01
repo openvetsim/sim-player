@@ -231,11 +231,7 @@ else
 			$tempString = "";
 
 			if(isset($_POST[$varName])){
-//				if (get_magic_quotes_gpc() == false) {
-					$tempString = mysqli_real_escape_string($connection, $_POST[$varName]);
-//				} else {
-//					$tempString = $_POST[$varName];
-//				}
+				$tempString = mysqli_real_escape_string($connection, $_POST[$varName]);
 			} else {
 				$tempString = "";
 			}
@@ -248,11 +244,7 @@ else
 			$tempString = "";
 
 			if(isset($_GET[$varName])){
-				if (get_magic_quotes_gpc() == false) {
-					$tempString = mysqli_real_escape_string($connection, $_GET[$varName]);
-				} else {
-					$tempString = $_GET[$varName];
-				}
+				$tempString = mysqli_real_escape_string($connection, $_GET[$varName]);
 			} else {
 				$tempString = "";
 			}
@@ -265,11 +257,7 @@ else
 			$tempString = "";
 
 			if(isset($_SESSION[$varName])){
-				if (get_magic_quotes_gpc() == false) {
-					$tempString = mysqli_real_escape_string($connection, $_SESSION[$varName]);
-				} else {
-					$tempString = $_SESSION[$varName];
-				}
+				$tempString = mysqli_real_escape_string($connection, $_SESSION[$varName]);
 			} else {
 				$tempString = "";
 			}
