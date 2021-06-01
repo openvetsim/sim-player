@@ -41,8 +41,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 			if($fileName == '.' || $fileName == '..' || $fileName == 'archive' || $fileName == 'video') {
 				continue;
 			}
-			
+
 			$nameArray = explode('_', $fileName);
+			if ( count($nameArray) < 2 ) {
+				continue;
+			}
 			$dateString = $nameArray[0] . ' ' . $nameArray[1];
 			
 			// get number of elements in name array
