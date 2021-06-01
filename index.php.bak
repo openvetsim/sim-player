@@ -18,37 +18,24 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 */
 	require_once('init.php');
-	if ( key_exists('NO_DB', $_SESSION ) ) {
-		header('location: /sim-player/player.php');
-		exit();
-	} else if ( ( key_exists('OS', $_SERVER) && strcmp($_SERVER['OS'], "Windows" ) == 0 ) ||
-	 ( key_exists('SERVER_SOFTWARE', $_SERVER) && strncmp($_SERVER['SERVER_SOFTWARE'], "PHP ", 4 ) == 0 ) ) {
-		$_SESSION['User']['UserFirstName'] = "";
-		$_SESSION['User']['UserLastName'] = "";
-		$_SESSION['User']['UserID'] = 1;
-		$_SESSION['User']['isUserLoggedIn'] = TRUE;
-		
-		$_SESSION['NO_DB'] = TRUE;
-		//header('location: /sim-ii/ii.php');
-		//exit();
-	} else {
-		// delete session data
-		adminClass::removeUserfromSession();
+	
+	// delete session data
+	adminClass::removeUserfromSession();
 
-		// check admin login
-		$loginErrorFlag = 0;
-		if(isset($_POST['submit'])) {
-	//FB::log($_POST);
+	// check admin login
+	$loginErrorFlag = 0;
+	if(isset($_POST['submit'])) {
+//FB::log($_POST);
 
-			if(($userRow = adminClass::isUserLoginValid($_POST['UserEmail'], $_POST['UserPassWord'])) !== FALSE) {
-				adminClass::addUserToSession($userRow);
-				header('location: player.php');
-			} else {
-				adminClass::removeUserFromSession();
-				$loginErrorFlag = 1;
-			}
+		if(($userRow = adminClass::isUserLoginValid($_POST['UserEmail'], $_POST['UserPassWord'])) !== FALSE) {
+			adminClass::addUserToSession($userRow);
+			header('location: player.php');
+		} else {
+			adminClass::removeUserFromSession();
+			$loginErrorFlag = 1;
 		}
 	}
+	
 ?>
 <!DOCTYPE html>
 <html>
